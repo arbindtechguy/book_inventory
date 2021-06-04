@@ -13,6 +13,7 @@ class FileExport {
     const DEFAULT_FILE_NAME_CSV = 'books.csv';
     const DEFAULT_FILE_NAME_XML = 'books.xml';
 
+    // File export: with csv file type
     public static function download_csv_file($export_fields, $filename = 'books.csv') {
         $books = DB::table('books')->select($export_fields)->get();
         $books = json_decode(json_encode($books), 1);
@@ -33,7 +34,8 @@ class FileExport {
         }
         exit;  
     }
-    
+
+    // File export: with xml file type
     public static function download_xml_file($export_fields, $filename = 'books.xml') {
         $books = DB::table('books')->select($export_fields)->get();
         $books = json_decode(json_encode($books), 1);
