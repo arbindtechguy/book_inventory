@@ -100,8 +100,18 @@ return [
     ],
     'grid_items_selected'    => '{n} items selected',
 
-    'menu_titles'            => [],
-    'prev'                   => 'Prev',
-    'next'                   => 'Next',
-    'quick_create'           => 'Quick create',
+    'menu_titles'               => [],
+    'prev'                      => 'Prev',
+    'next'                      => 'Next',
+    'quick_create'              => 'Quick create',
+    'success_update'            => 'Book [ :title ] has been successfully updated.',
+    'success_insert'            => 'Book [ :title ] has been successfully inserted.',
+    'error_update'              => 'Book [ :title ] can not be updated due to some error, please try again.',
+    'error_insert'              => 'Book [ :title ] can not be registered due to some error, please try again.',
+    'success_delete'            => 'Book [ :title ] has been successfully deleted.',
+    'error_delete'              => 'Book [ :title ] can not be deleted due to some error, please try again.',
+    'multiple_success_delete'   => 'Total: [ :count Book ] has been successfully deleted.',
+    'multiple_error_delete'     => 'Selected Book can not be deleted due to some error, please try again.',
+
+
 ];
