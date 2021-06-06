@@ -35,7 +35,7 @@ class AdminController extends Controller {
 
         // return page content
         return $content->title('Book Inventory')
-            ->description('displaying search resukts for "' . $req->get('k') . '"')
+            ->description('displaying search results for "' . $req->get('k') . '"')
             ->body(view('admin.dashboard', [
                 'books' => $this->filter_books($req),
                 'query' => $req->get('k'),
