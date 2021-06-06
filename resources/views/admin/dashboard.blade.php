@@ -1,5 +1,5 @@
 @include('common.search_bar')
-<link rel="stylesheet" href="{{ asset('assets/css/dashboard.css') }}?{{ File::lastModified('assets/css/dashboard.css') }}">
+<link rel="stylesheet" href="{{ asset('assets/css/dashboard.css') }}?{{ env('VERSION') }}">
 
 <script>
     $(document).ready(function () {
