@@ -4,7 +4,7 @@ Public page URL: www.greplink.com/
 
 ## **Installing Books Inventory via Ubuntu and apache server**
 
-1. Install repository for Apache
+1. To install repository for Apache
 
     ```
     sudo apt install software-properties-common
@@ -14,14 +14,14 @@ Public page URL: www.greplink.com/
     ```
 
 
-2. Install apache and basic PHP tools
+2. To install apache and basic PHP tools
 
     ```
     sudo apt-get install apache2 php7.4 libapache2-mod-php7.4 php7.4-curl php-pear php7.4-gd php7.4-dev php7.4-zip php7.4-mbstring php7.4-mysql php7.4-xml curl -y
     ```
 
 
-3. Install the MySQL server by using the Ubuntu operating system package manager
+3. To install the MySQL server by using the Ubuntu operating system package manager
 
     ```
     sudo apt-get update
