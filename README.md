@@ -4,7 +4,7 @@ Public page URL: www.greplink.com/
 
 ## **Installing Books Inventory via Ubuntu and apache server**
 
-1. Install repository for Apache
+1. To install repository for Apache
 
     ```
     sudo apt install software-properties-common
@@ -14,14 +14,14 @@ Public page URL: www.greplink.com/
     ```
 
 
-2. Install apache and basic PHP tools
+2. To install apache and basic PHP tools
 
     ```
     sudo apt-get install apache2 php7.4 libapache2-mod-php7.4 php7.4-curl php-pear php7.4-gd php7.4-dev php7.4-zip php7.4-mbstring php7.4-mysql php7.4-xml curl -y
     ```
 
 
-3. Install the MySQL server by using the Ubuntu operating system package manager
+3. To install the MySQL server by using the Ubuntu operating system package manager
 
     ```
     sudo apt-get update
@@ -151,4 +151,26 @@ Public page URL: www.greplink.com/
     ```
     php artisan admin:create-user
     ```
+    
+- Add a book to the list.
+![ADMIN: Add a book to the list step 1. 1](https://www.greplink.com/screenshots/admin_add_book_1.png)
+![ADMIN: Add a book to the list step 2. 2](https://www.greplink.com/screenshots/admin_add_book.png)
 
+- Delete a book from the list.
+![ADMIN: Delete a book from the list 1](https://www.greplink.com/screenshots/admin_delete_book.png)
+
+- Change an authors name
+ ![ADMIN: Change an authors details step 1 1](https://www.greplink.com/screenshots/admin_edit_book_1.png)
+ ![ADMIN: Change an authors details step 2 1](https://www.greplink.com/screenshots/admin_edit_book_2.png)
+
+- Sort by title or author
+ ![ADMIN: Sort by title descending order 1](https://www.greplink.com/screenshots/admin_sort_title_desc.png)
+ ![ADMIN: Sort by title ascending order 1](https://www.greplink.com/screenshots/admin_sort_title_asc.png)
+ ![ADMIN: Sort by author 1](https://www.greplink.com/screenshots/admin_sort_author_sort.png)
+
+- Search for a book by title or author
+ ![ADMIN: Search for a book by title or author 1](https://www.greplink.com/screenshots/admin_search_books.png)
+
+- Export the the following in CSV and XML
+  ![ADMIN: Export the the following in CSV and XML step 1 1](https://www.greplink.com/screenshots/admin_export_books.png)
+  ![ADMIN: Export the the following in CSV and XML step 2 1](https://www.greplink.com/screenshots/admin_export_books_modal.png)
