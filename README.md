@@ -1,61 +1,154 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+Admin page URL: www.greplink.com/admin
+Public page URL: www.greplink.com/
 
-## About Laravel
+## **Installing Books Inventory via Ubuntu and apache server**
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+1. Install repository for Apache
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+    ```
+    sudo apt install software-properties-common
+    sudo add-apt-repository ppa:ondrej/php
+    sudo apt update
+    sudo apt install php7.4
+    ```
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
-## Learning Laravel
+2. Install apache and basic PHP tools
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+    ```
+    sudo apt-get install apache2 php7.4 libapache2-mod-php7.4 php7.4-curl php-pear php7.4-gd php7.4-dev php7.4-zip php7.4-mbstring php7.4-mysql php7.4-xml curl -y
+    ```
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
 
-## Laravel Sponsors
+3. Install the MySQL server by using the Ubuntu operating system package manager
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+    ```
+    sudo apt-get update
+    sudo apt-get install mysql-server
+    ```
 
-### Premium Partners
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[OP.GG](https://op.gg)**
 
-## Contributing
+* The installer installs MySQL and all dependencies.
+* If the secure installation utility does not launch automatically after the installation completes, enter the following command:
+    ```
+    sudo mysql_secure_installation utility
+    ```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+    ```
+    sudo mysql -u root
+    CREATE DATABASE book_inventory;
+    ```
+* To create user and grant permission to the database
+    ```
+    CREATE USER 'inventory_user'@'localhost' IDENTIFIED BY 'user_password_1234';
+    GRANT SELECT, INSERT, UPDATE, DELETE, CREATE, INDEX, DROP, ALTER, CREATE TEMPORARY TABLES, LOCK TABLES ON book_inventory.* TO 'inventory_user'@'localhost';
+    ```
 
-## Code of Conduct
+4. Clone the repository from git
+    ```
+    git clone https://github.com/arbindtechguy/book_inventory.git
+    ```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+5. Change basic permissions for laravel framework  
 
-## Security Vulnerabilities
+    ```
+    sudo chown -R arbindtechguy:www-data book_inventory/
+    cd book_inventory/
+    sudo chmod -R 775 storage bootstrap/cache
+    ```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
 
-## License
+6. Setting up virtual configuration on apache
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+    ```
+    cd /etc/apache2/sites-available/
+    ```
+
+    ```
+    sudo vim book_inventory.com.conf
+    ```
+
+* Basic configuration for for this project
+    ```
+    <VirtualHost *:80>
+        ServerName greplink.com
+        ServerAlias greplink.com *.greplink.com
+        RedirectMatch permanent ^/(.*) https://www.greplink.com/$1
+    </VirtualHost>
+    
+    <IfModule mod_ssl.c>
+        <VirtualHost *:443>
+            ServerAdmin arbindtechguy@gmail.com
+                ServerName www.greplink.com
+                ServerAlias www.greplink.com    
+                DocumentRoot /var/www/book_inventory/public
+            <Directory "/var/www/book_inventory/public">
+                Options Indexes FollowSymLinks
+                AllowOverride All
+                Require all granted
+                RewriteEngine On    
+            </Directory>
+            ErrorLog ${APACHE_LOG_DIR}/book_inventory_error.log
+            CustomLog ${APACHE_LOG_DIR}/book_inventory_access.log combined
+            # SSL CERTIFICATES PATH
+        </VirtualHost>
+    </IfModule>
+    
+    ```
+
+*   To enable apache rewrite module
+
+    ```
+    sudo a2enmod rewrite
+    ```
+
+
+*   To reload the Apache configurations
+
+    ```
+    sudo service apache2 restart
+    ```
+
+
+7. To build the project 
+
+    ```
+    cd /var/www/book_inventory
+    composer install
+    ```
+
+
+
+
+8. Update the basic environment configurations
+    ```
+    ...
+    APP_NAME=book_inventory
+    DB_DATABASE=book_inventory
+    DB_USERNAME=inventory_user
+    DB_PASSWORD=user_password_1234
+    ...
+    ```
+
+9. To run database Migrations
+
+    ```
+    php artisan migrate
+    ```
+
+
+10. To generate Vendor files of laravel-admin
+    ```
+    sudo php artisan vendor:publish --provider="Encore\Admin\AdminServiceProvider"
+    ```
+
+
+*  [Optionals]
+
+* To create an Admin Credentials Through Artisan command
+    ```
+    php artisan admin:create-user
+    ```
+
