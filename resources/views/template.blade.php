@@ -27,7 +27,7 @@ $keywords = !empty($keywords) ? $keywords : '';
     <meta name="description" content="{{ $desc }}" />
     @endif
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico">
-    <link rel="stylesheet" href="{{ asset('assets/css/dashboard.css') }}?{{ File::lastModified('assets/css/dashboard.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/dashboard.css') }}?{{ env('VERSION') }}">
     <link rel="stylesheet" href="{{ env('APP_URL') }}/vendor/laravel-admin/AdminLTE/dist/css/AdminLTE.min.css">
     <script src="{{env('APP_URL')}}/vendor/laravel-admin/AdminLTE/plugins/jQuery/jQuery-2.1.4.min.js"></script>
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
