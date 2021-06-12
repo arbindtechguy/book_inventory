@@ -18,4 +18,20 @@
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [L]
+
+
+### WWW & HTTPS
+
+# ensure www.
+RewriteEngine On
+Options +FollowSymLinks
+RewriteEngine On
+RewriteCond %{HTTP_HOST} ^greplink.com$
+RewriteRule ^(.*) https://www.greplink.com/$1  [QSA,L,R=301]
+
+
+# ensure https
+
+### WWW & HTTPS
+
 </IfModule>
